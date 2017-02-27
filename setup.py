@@ -47,8 +47,8 @@ setup(
         'Development Status :: 5 - Production/Stable',
 
         # Indicate who your project is intended for
-        'Intended Audience :: Developers',
-        'Topic :: Software Development :: Build Tools',
+        'Intended Audience :: End Users/Desktop',
+        'Topic :: Utilities',
 
         # Pick your license as you wish (should match "license" above)
         'License :: OSI Approved :: Apache Software License',
