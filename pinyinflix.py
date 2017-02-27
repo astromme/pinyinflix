@@ -155,18 +155,18 @@ def write_dfxp(subtitles):
 
 def main():
     parser = argparse.ArgumentParser(description='Given a .srt file, annotate with pinyin and convert to .dfxp suitable for Netflix.')
-    parser.add_argument('input_filename', metavar='INPUT', type=str,
+    parser.add_argument('input', metavar='INPUT', type=str,
                        help='The subtitles file to annotate and convert')
-    parser.add_argument('output_filename', metavar='OUTPUT', type=str,
+    parser.add_argument('output', metavar='OUTPUT', type=str,
                        help='The output filename')
-
+    parser.add_argument('--timeshift', metavar='MILLIS', type=int, default=0,
+                       help='Shift by MILLIS milliseconds')
     args = parser.parse_args()
-    print(args.input_filename, args.output_filename)
 
-
-    subtitles = read_subtitles(args.input_filename)
-    subtitles = time_shifted(subtitles, 2000)
-    with open(args.output_filename, 'w') as f:
+    print('Converting {args.input} to {args.output}, timeshifted by {args.timeshift} milliseconds'.format(args=args))
+    subtitles = read_subtitles(args.input)
+    subtitles = time_shifted(subtitles, args.timeshift)
+    with open(args.output, 'w') as f:
         f.write(write_dfxp(subtitles))
 
 if __name__ == '__main__':
